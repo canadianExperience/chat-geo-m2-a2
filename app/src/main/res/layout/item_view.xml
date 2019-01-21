@@ -6,10 +6,10 @@
 
     <!-- this view reveals when swipe right -->
     <RelativeLayout
-        android:tag="reveal-right"
-        android:background="@color/colorAccent"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="@color/colorAccent"
+        android:tag="reveal-right">
 
         <ImageView
             android:layout_width="wrap_content"
@@ -17,8 +17,8 @@
             android:layout_alignParentLeft="true"
             android:layout_centerVertical="true"
             android:layout_marginLeft="20dp"
-            android:tint="@color/icons"
-            android:src="@mipmap/ic_launcher"/>
+            android:src="@mipmap/ic_launcher"
+            android:tint="@color/icons" />
     </RelativeLayout>
 
 
@@ -71,6 +71,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="14dp" />
+
     </RelativeLayout>
 
 

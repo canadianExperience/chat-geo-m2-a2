@@ -24,6 +24,7 @@ public class ChatMessagesAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
     public class ChatMessageViewHolder extends SwipeToAction.ViewHolder<ChatMessage> {
         public TextView userName;
         public TextView chatMessageBody;
+        public TextView msgDate;
         public ImageView imageView;
 
         public ChatMessageViewHolder(View v) {
@@ -32,6 +33,7 @@ public class ChatMessagesAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
             userName = (TextView) v.findViewById(R.id.userName);
             chatMessageBody = (TextView) v.findViewById(R.id.body);
             imageView = (ImageView) v.findViewById(R.id.image);
+            msgDate = (TextView) v.findViewById(R.id.msgDate);
         }
     }
 
@@ -63,6 +65,7 @@ public class ChatMessagesAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
         ChatMessage item = items.get(position);
         ChatMessageViewHolder vh = (ChatMessageViewHolder) holder;
         vh.userName.setText(item.getUserName());
+        vh.msgDate.setText(item.getDate());
         vh.chatMessageBody.setText(item.getBody());
         vh.data = item;
     }
