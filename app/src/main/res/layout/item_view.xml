@@ -2,7 +2,9 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="@dimen/item_height">
+    android:layout_height="@dimen/item_height"
+    android:layout_marginBottom="2dp"
+    >
 
     <!-- this view reveals when swipe right -->
     <RelativeLayout
@@ -41,51 +43,64 @@
 
 
     <!-- this is the item front view -->
-    <RelativeLayout
+
+    <LinearLayout
         android:tag="front"
         android:background="@color/item_background"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:padding="@dimen/item_padding">
+        android:padding="@dimen/item_padding"
+        android:orientation="horizontal"
+        android:weightSum="1">
 
-        <ImageView
+            <ImageView
             android:id="@+id/image"
             android:layout_width="48dp"
             android:layout_height="48dp"
             android:layout_marginRight="10dp"
-            android:src="@drawable/ic_message" />
+            android:src="@drawable/ic_message"
+                android:layout_weight="0.3"/>
 
-        <TextView
-            android:id="@+id/userName"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_toRightOf="@+id/image"
-            android:singleLine="true"
-            android:textSize="16dp"
-            android:textStyle="bold" />
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.7">
 
-        <TextView
-            android:id="@+id/msgDate"
-            android:layout_below="@+id/userName"
-            android:layout_alignLeft="@+id/userName"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="14dp" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal"
+                    android:weightSum="1">
 
-        <TextView
-            android:id="@+id/body"
-            android:layout_below="@+id/msgDate"
-            android:layout_alignLeft="@+id/msgDate"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="14dp" />
+                    <TextView
+                        android:id="@+id/userName"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:singleLine="true"
+                        android:textSize="16dp"
+                        android:textStyle="bold"
+                        android:layout_weight="0.3"/>
 
-    </RelativeLayout>
+                    <TextView
+                        android:id="@+id/msgDate"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="end"
+                        android:textSize="14dp"
+                        android:layout_weight="0.7"/>
+                </LinearLayout>
 
+                <TextView
+                    android:id="@+id/body"
+                    android:layout_below="@id/userName"
+                    android:layout_alignLeft="@id/userName"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="14dp" />
 
-    <!-- just a divider -->
-    <View android:background="@color/divider"
-        android:layout_width="fill_parent"
-        android:layout_height="0.5dp" />
+            </LinearLayout>
+
+    </LinearLayout>
 
 </FrameLayout>

@@ -7,10 +7,12 @@ import android.database.Cursor;
 import android.net.Uri;
 import android.util.Log;
 
+import com.zv.geochat.Util.Utility;
 import com.zv.geochat.model.ChatMessage;
 import com.zv.geochat.provider.GeoChatProviderMetadata.*;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 
@@ -85,7 +87,13 @@ public class ChatMessageStore {
 			chatMessage.setId(c.getString(indexId));
 			chatMessage.setUserName(c.getString(indexUserName));
 			chatMessage.setBody(c.getString(indexMsgBody));
-			chatMessage.setDate(c.getString(indexMsgDate));
+
+			//Set PrettyTime
+
+			Date dt = Utility.stringToDate(c.getString(indexMsgDate));
+			String stringDt = Utility.dateToPrettyTime(dt);
+
+			chatMessage.setDate(stringDt);
 
 			list.add(chatMessage);
 

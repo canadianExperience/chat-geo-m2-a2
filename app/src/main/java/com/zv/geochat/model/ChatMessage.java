@@ -39,12 +39,7 @@ public class ChatMessage {
         return id;
     }
 
-    public String getDate() {
-//        final DateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'");
-//        sdf.setTimeZone(TimeZone.getDefault());
-//        String dt = sdf.format(this.date);
-        return date;
-    }
+    public String getDate() { return date; }
 
     public void setId(String id) {
         this.id = id;

@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.os.IBinder;
 import android.os.PowerManager;
 import android.preference.PreferenceManager;
+import android.support.v4.app.NotificationManagerCompat;
 import android.text.format.DateFormat;
 import android.util.Log;
 
@@ -33,10 +34,11 @@ public class ChatService extends Service {
     public static final String KEY_MESSAGE_TEXT = "message_text";
     public static final String KEY_USER_NAME = "user_name";
 
-    private NotificationManager notificationMgr;
+    private NotificationManagerCompat notificationMgr;
     private PowerManager.WakeLock wakeLock;
     private NotificationDecorator notificationDecorator;
     private ChatMessageStore chatMessageStore;
+
 
     private String userName;
 
@@ -47,8 +49,10 @@ public class ChatService extends Service {
     public void onCreate() {
         Log.v(TAG, "onCreate()");
         super.onCreate();
-        notificationMgr = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
+        notificationMgr = NotificationManagerCompat.from(this);
+        //notificationMgr = (NotificationManagerCompat) getSystemService(NOTIFICATION_SERVICE);
         notificationDecorator = new NotificationDecorator(this, notificationMgr);
+
         chatMessageStore = new ChatMessageStore(this);
         loadUserNameFromPreferences();
 
@@ -100,6 +104,9 @@ public class ChatService extends Service {
         int command = data.getInt(MSG_CMD);
         Log.d(TAG, "-(<- received command data to service: command=" + command);
         Date dateNow = new Date();
+
+       // String msgDate = Utility.dateToPrettyTime(dateNow);
+
         String msgDate = Utility.dateToString(dateNow);
         if (command == CMD_JOIN_CHAT) {
             String userName = (String) data.get(KEY_USER_NAME);

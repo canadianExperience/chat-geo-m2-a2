@@ -5,18 +5,24 @@ import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
+import android.support.v4.app.NotificationCompat;
+import android.support.v4.app.NotificationManagerCompat;
 import android.util.Log;
 
 import com.zv.geochat.ChatActivity;
 import com.zv.geochat.R;
 
+import static com.zv.geochat.App.CHANNEL_1_ID;
+
 public class NotificationDecorator {
 
     private static final String TAG = "NotificationDecorator";
     private final Context context;
-    private final NotificationManager notificationMgr;
+    // private final NotificationManager notificationMgr;
+    private NotificationManagerCompat notificationMgr;
 
-    public NotificationDecorator(Context context, NotificationManager notificationManager) {
+    public NotificationDecorator(Context context, NotificationManagerCompat notificationManager) {
+        // notificationManager = NotificationManagerCompat.from(context);
         this.context = context;
         this.notificationMgr = notificationManager;
     }
@@ -32,11 +38,12 @@ public class NotificationDecorator {
         try {
 
 
-            Notification noti = new Notification.Builder(context)
+            Notification noti = new NotificationCompat.Builder(context, CHANNEL_1_ID)
                     .setSmallIcon(android.R.drawable.ic_dialog_info)
                     .setContentTitle(title)
                     .setContentText(contentText)
                     .setContentIntent(contentIntent)
+                    .setPriority(NotificationCompat.PRIORITY_HIGH)
                     .setAutoCancel(true)
                     .build();
 
